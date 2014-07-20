@@ -2,6 +2,7 @@ import tweepy
 import datetime
 from datetime import timedelta
 import webbrowser
+import random
 
 consumer_key = '********'
 consumer_secret = '********'
@@ -24,7 +25,9 @@ def makeChoice(str, screen_name):
     elif str == 'o':
         webbrowser.open('https://twitter.com/{user}'.format(user = screen_name))
 
-for i in api.friends_ids('hideo54'):
+followList = api.friends_ids('hideo54')
+random.shuffle(followList)
+for i in followList:
     try:
         newest = api.user_timeline(id=i)[0]
         if newest.created_at < limitDate:
