@@ -29,7 +29,7 @@ followList = api.friends_ids('hideo54')
 random.shuffle(followList)
 for i in followList:
     try:
-        newest = api.user_timeline(id=i)[0]
+        newest = api.user_timeline(id=i, count=1)[0]
         if newest.created_at < limitDate:
             lastChoice = raw_input('Do you really wanna unfollow this user, @{user}? (y/n)\nIf you wanna open in your browser, type "o".  '.format(user = newest.user.screen_name))
             makeChoice(lastChoice, newest.user.screen_name)
